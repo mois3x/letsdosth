@@ -23,10 +23,12 @@ end
 
 group :development, :test do
   gem "rspec-rails"
+  gem "rake"
+  gem "simplecov"
+  gem 'coveralls', require: false
 end
 
 group :test do
-  gem "rake"
 end
 
 gem 'jquery-rails'
