@@ -13,3 +13,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Coverage report
+coverage
+
+# Vim temporal files
+*.sw*

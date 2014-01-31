@@ -27,6 +27,7 @@ end
 
 group :test do
   gem "rake"
+  gem "simplecov"
 end
 
 gem 'jquery-rails'
