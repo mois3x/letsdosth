@@ -6,6 +6,7 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'devise'
 
 
 # Gems used only for assets and not required
@@ -23,13 +24,12 @@ end
 
 group :development, :test do
   gem "rspec-rails"
-  gem "rake"
+  gem "cucumber-rails", :require => false
+  gem "capybara"
+  gem "database_cleaner"
   gem "simplecov"
-  gem 'coveralls', require: false
 end
 
-group :test do
-end
 
 gem 'jquery-rails'
 
