@@ -27,11 +27,9 @@ group :development, :test do
   gem "cucumber-rails", :require => false
   gem "capybara"
   gem "database_cleaner"
+  gem "simplecov"
 end
 
-group :test do
-  gem "rake"
-end
 
 gem 'jquery-rails'
 
