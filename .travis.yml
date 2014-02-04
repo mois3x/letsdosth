@@ -7,5 +7,4 @@ scritp:
   - bundle exec rake spec
 branches:
   only:
-    - master
     - dev
