@@ -1,9 +1,17 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'simplecov'
+SimpleCov.start do
+  add_group "Models", "app/models/"
+  add_group "Controllers", "app/controllers/" 
+  add_group "Helpers", "app/helpers/" 
+  add_filter "spec/"
+end
+
+
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
-require 'simplecov'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
