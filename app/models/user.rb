@@ -9,4 +9,9 @@ class User < ActiveRecord::Base
 
   has_many :complaints, :through => :signatures
   has_many :signatures
+
+  def advocates( complaint )
+    complaint.signatures.create!( :when => Date.today, 
+      :user => self)
+  end
 end

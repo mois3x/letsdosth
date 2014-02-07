@@ -8,7 +8,9 @@ class Complaint < ActiveRecord::Base
   has_many :users, :through => :signatures
 
   before_save do
-    self.signatures.new( :when => Date.today, :user => @author ) unless @author.nil?
+    unless @author.nil? 
+      self.signatures.new( :when => Date.today, :user => @author ) unless @author.nil?
+    end
   end
 
   def author=( user ) 

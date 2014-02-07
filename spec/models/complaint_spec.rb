@@ -1,8 +1,13 @@
 require 'spec_helper'
 
 describe Complaint do
-  let(:author) { User.create( :email => 'user00@domain.com', 
+  let(:author) { User.create( :email => 'author0@domain.com', 
       :password => 'weak_pwd', :password_confirmation => 'weak_pwd' )  }
+  let(:other) { User.create( :email => 'user01@domain.com', 
+      :password => 'weak_pwd', :password_confirmation => 'weak_pwd' )  }
+  let(:complaint) {
+    Complaint.create( :author => author, :title => "Price raises", 
+      :body => "long body " * 512 ) }
 
   describe "create" do
     it "shouldn't create a complaint without mandatorie fields" do
@@ -26,14 +31,22 @@ describe Complaint do
 
   describe "author" do
     before do
-      Complaint.create( :author => author, 
-        :title => "Price raises", :body => "long body " * 512 )
+      Complaint.create( :author => author, :title => "Price raises", 
+        :body => "long body " * 512 )
     end
 
     it "should grab the right author" do
       c = Complaint.first 
       c.should_not be(nil)
       c.author.should eq(author)  
+    end
+  end
+
+  describe "user advocates the complaint" do
+    it "advocator and author should belong the complaint" do
+      other.advocates( complaint )
+      complaint.users(true).should include( other, author )
+      complaint.author.should eq(author)
     end
   end
 
