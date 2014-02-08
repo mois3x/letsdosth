@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
     complaint.signatures.create!( :when => Date.today, 
       :user => self)
   end
+
+  def relinquishes( complaint )
+    complaint.users.delete( self ) unless complaint.author == self
+  end
 end
