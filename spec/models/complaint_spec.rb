@@ -50,6 +50,17 @@ describe Complaint do
     end
   end
 
+  describe "advocators" do
+    it "should has advocators" do
+      ignored_agreement.has_advocators?.should == true 
+    end
+
+    it "should has advocators set which doesn't include author" do
+      ignored_agreement.advocators.should include( chad, john )
+      ignored_agreement.advocators.should_not include( author )
+    end
+
+  end
   describe "user advocates the complaint" do
     it "advocator and author should belong the complaint" do
       john.advocates( complaint )

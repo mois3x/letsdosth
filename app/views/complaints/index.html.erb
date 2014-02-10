@@ -4,23 +4,12 @@
   <div class="row marketing">   <!-- Complaints container -->
     <% if @complaints.empty? %>
       <div class="col-md-9 boder_debug border_green_debug"> <!-- entry -->
-        <span>There are not complaints</span>
+        <span>translate( 'none_complaint' )</span>
       </div> <!-- end 'entry -->
     <% end %>
   
-    <% @complaints.each do |complaint| %>
-       
-      <div class="col-md-9 border_red_debug"> <!-- entry -->
-        <div class="row ">
-          <div class="col-md-6">
-            <span><p><%= complaint.title %></p></span>
-            <span><p><%= complaint.body %></p></span>
-          </div>
-          <div class="col-md-6 boder_debug">
-            <span><p>advocators</p></span>
-          </div>
-        </div>
-      </div> <!-- end 'entry -->
+    <% @complaints.each do |c| %>
+      <%= render partial: "entry", locals: { complaint: c } %>
     <% end %>
 
   </div>  <!-- End of 'Complaints container -->

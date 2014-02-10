@@ -21,4 +21,12 @@ class Complaint < ActiveRecord::Base
     self.users.first || @author
   end
 
+  def has_advocators?
+    not self.advocators.empty?
+  end
+
+  def advocators
+    self.users(true)[1..(self.users.count)] || [] # It skips author
+  end
+
 end
