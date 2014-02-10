@@ -3,3 +3,6 @@ es:
   sign_up: 'Registrate hoy!'
   sign_out: 'Salir'
   log_in: 'Entrar'
+  complaint:
+    none_complaint: "No hay quejas?!"
+    none_advocator: "Solo Uds. critica"

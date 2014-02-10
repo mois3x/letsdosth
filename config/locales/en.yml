@@ -6,4 +6,6 @@ en:
   sign_up: 'Sign up today!'
   sign_out: 'Log out'
   log_in: 'Log in'
+  complaint:
+    none_complaint: "There aren't complaints"
 

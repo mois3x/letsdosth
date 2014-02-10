@@ -1,12 +1,12 @@
-<div class="col-md-9 border_red_debug"> <!-- entry -->
+<div class="col-lg-12 border_red_debug"> <!-- entry -->
   <div class="row ">
-    <div class="col-md-8">
+    <div class="col-lg-8">
       <span><p><%= complaint.title %></p></span>
       <span><p><%= complaint.body %></p></span>
     </div>
-    <div class="col-md-4 border_green_debug">
+    <div class="col-lg-4 border_green_debug">
       <% if not complaint.has_advocators? %>
-        <span><p><%= translate( 'none_advocator' )%></p></span>
+        <span><p><%= translate( 'complaint.none_advocator' )%></p></span>
       <% else %>
         <% complaint.advocators.each do |u| %> 
           <span><p><%= u.email %></p></span>

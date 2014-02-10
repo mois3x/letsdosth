@@ -3,8 +3,8 @@
 
   <div class="row marketing">   <!-- Complaints container -->
     <% if @complaints.empty? %>
-      <div class="col-md-9 boder_debug border_green_debug"> <!-- entry -->
-        <span>translate( 'none_complaint' )</span>
+      <div class="col-lg-12 boder_debug border_green_debug"> <!-- entry -->
+        <span><%= translate( 'complaint.none_complaint' ) %></span>
       </div> <!-- end 'entry -->
     <% end %>
   
