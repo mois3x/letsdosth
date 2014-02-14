@@ -17,7 +17,8 @@ describe Complaint do
     john.advocates( complaint )
     complaint
   }
-  describe "create" do
+
+  describe "creation" do
     it "shouldn't create a complaint without mandatorie fields" do
       c = Complaint.new
       c.should_not be_valid
@@ -37,7 +38,7 @@ describe Complaint do
 
   end
 
-  describe "author" do
+  describe "author writes a complain" do
     before do
       Complaint.create( :author => author, :title => "Price raises", 
         :body => "long body " * 512 )
@@ -50,7 +51,8 @@ describe Complaint do
     end
   end
 
-  describe "advocators" do
+
+  describe "user advocates the complaint" do
     it "should has advocators" do
       ignored_agreement.has_advocators?.should == true 
     end
@@ -60,8 +62,6 @@ describe Complaint do
       ignored_agreement.advocators.should_not include( author )
     end
 
-  end
-  describe "user advocates the complaint" do
     it "advocator and author should belong the complaint" do
       john.advocates( complaint )
       complaint.users(true).should include( john, author )
@@ -79,7 +79,7 @@ describe Complaint do
     end
   end
 
-  describe "author relinquishe a complaint" do
+  describe "user relinquishe a complaint" do
     it "should not be posible for author relinquishe a complaint" do
       ignored_agreement.author.should eq( author )
       author.relinquishes( ignored_agreement )
@@ -87,6 +87,19 @@ describe Complaint do
       ignored_agreement.users(true).should include( john, author )
     end
     pending "author should be able to relinquishe a complaint"
+  end
+
+  describe "user finds complaint" do
+    before do
+      # Both code line forced complaints creation
+      complaint        
+      ignored_agreement
+    end
+
+    it "should return complaints written by author" do
+      collection = Complaint.by_author( author )
+      collection.should include( complaint, ignored_agreement )
+    end
   end
 
 
