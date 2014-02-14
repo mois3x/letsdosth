@@ -21,4 +21,23 @@ class Complaint < ActiveRecord::Base
     self.users.first || @author
   end
 
+  def has_advocators?
+    not self.advocators.empty?
+  end
+
+  def advocators
+    self.users(true)[1..(self.users.count)] || [] # It skips author
+  end
+
+  def self.by_author( user )
+    result = Complaint.joins(:users).where( 
+      "signatures.user_id = #{user.id}")
+
+    result.select! do |complaint|
+      complaint.author == user
+    end
+
+    result
+  end
+
 end

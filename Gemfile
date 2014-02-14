@@ -28,6 +28,7 @@ group :development, :test do
   gem "capybara"
   gem "database_cleaner"
   gem "simplecov"
+  gem "faker" 
 end
 
 
