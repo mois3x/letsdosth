@@ -1,4 +1,12 @@
 es:
+  # Active records message localization
+  errors:
+    messages: 
+      blank: 
+        "El %{attribute} debe estar completo"
+
+
+  # Project localization
   project_name: 'Hagamos algo'
   sign_up: 'Registrate hoy!'
   sign_out: 'Salir'

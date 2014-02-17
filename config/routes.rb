@@ -1,5 +1,5 @@
 Letsdosomething::Application.routes.draw do
-  get "complaints/index"
+  resources :complaints
 
   devise_for :users
 
