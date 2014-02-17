@@ -49,8 +49,7 @@ end
 
 Then /^User sees '(.*)' and it's advocators$/ do |complaint_title|
   author = User.where( :email => self.grab_email_from(complaint_title) ).first
-  complaint = Complaint.includes(:users).where( 
-    "signatures.user_id = #{author.id}" ).first
+  complaint = Complaint.by_author( author ).first
  
   page.should have_content( complaint.body )
   page.should have_content( complaint.title )
