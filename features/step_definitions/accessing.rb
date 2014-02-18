@@ -3,13 +3,6 @@ def normalize_action( action = '' )
   action.downcase!.sub!(' ', '_')
 end
 
-Given /^'(.*)' is enrolled$/ do |name|
-  User.create( :email => "#{name.downcase}@fenix.com", 
-    :password => "weakest_password",
-    :password_confirmation => "weakest_password" 
-  )
-end
-
 Given "There is not users" do
   expect(User.all).to eq([])
 end
@@ -17,11 +10,6 @@ end
 And /^'(.*)' clicked '(.*)'$/ do |name, action|
   visit( root_path )
   click_on( normalize_action(action) )
-end
-
-And /^'(.*)' visit logging page$/ do |name| 
-  visit( root_path )
-  click_on('log_in')
 end
 
 And "There not user logged in" do

@@ -1,39 +1,6 @@
-module ComplaintModule
-  def password
-    "weakest_password"
-  end
-
-  def create_user
-    User.create!( :email => Faker::Internet.email,
-      :password => password, :password_confirmation => password )
-  end
-
-  def create_user_from( complaint_title )
-    name = complaint_title.split( " " ).first.downcase
-    User.create!( :email => "#{name.downcase}@domain.com",
-      :password => password, :password_confirmation => password )
-  end
-
-  def create_advocators( howmany = 5 )
-    result = []
-
-    (1..howmany).each do 
-      result << self.create_user
-    end
-
-    result
-  end
-
-  def grab_email_from( complaint_title )
-    name = complaint_title.split( " " ).first.downcase
-    "#{name.downcase}@domain.com"
-  end
-end
-
-World( ComplaintModule )
 
 Given /^'(.*)' was written$/ do |complaint_title|
-  author = self.create_user_from( complaint_title )
+  author = User.where( :email => grab_email_from( complaint_title ) ).first
   c = Complaint.create!( :title => complaint_title, :body => Faker::Lorem.sentences,
     :author => author );
 
@@ -43,14 +10,13 @@ Given /^'(.*)' was written$/ do |complaint_title|
   end
 end
 
-When "User visit 'complaints index'" do
-  visit( complaints_index_path )
+When "User visits 'complaints'" do 
+  visit( complaints_path )
 end
 
-Then /^User sees '(.*)' and it's advocators$/ do |complaint_title|
+Then /^User sees '(.*)' complaints and it's advocators$/ do |complaint_title|
   author = User.where( :email => self.grab_email_from(complaint_title) ).first
-  complaint = Complaint.by_author( author ).first
- 
+  Complaint.by_author( author ).each do |complaint|
   page.should have_content( complaint.body )
   page.should have_content( complaint.title )
 
@@ -58,3 +24,20 @@ Then /^User sees '(.*)' and it's advocators$/ do |complaint_title|
     page.should have_content( u.email )
   end
 end
+end
+
+Then /^'(.*)' sees the complaint titled '(.*)'$/ do |name, title|
+  page.should have_content( title )
+  page.should have_content( "Body of my #{title}" )
+end
+
+Given /^'(.*)' visits new complaint page$/ do |name|
+  visit( new_complaint_path ) 
+end
+
+When /^'(.*)' writes the '(.*)'$/ do |author, complain_title|
+  fill_in( 'Title', :with => complain_title )
+  fill_in( 'Body', :with => "Body of my #{complain_title}")
+  click_on( 'Create' ) 
+end
+
