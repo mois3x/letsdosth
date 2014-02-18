@@ -9,6 +9,7 @@ class ComplaintsController < ApplicationController
 
   def create
     @complaint = Complaint.new( params[:complaint] )
+    @complaint.author = User.first
     if ( @complaint.save )
       redirect_to complaints_path
     else

@@ -13,4 +13,7 @@ es:
   log_in: 'Entrar'
   complaint:
     none_complaint: "No hay quejas?!"
-    none_advocator: "Solo Uds. critica"
+    none_advocator: "Aún no hay apoyo"
+    errors:
+      creation: 'Algunos campos son inválidos'
+        
