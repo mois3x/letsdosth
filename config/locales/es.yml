@@ -7,11 +7,17 @@ es:
 
 
   # Project localization
-  project_name: 'Hagamos algo'
+  project_name: 'Hagamos algo!'
   sign_up: 'Registrate hoy!'
   sign_out: 'Salir'
   log_in: 'Entrar'
+  contact: 'Contactarnos'
+  donation:
+    title: 'Donaciones'
+    coding: 'Escribir código'
+    paypal: 'Paypal'
   complaint:
+    nav: 'Quejas'
     none_complaint: "No hay quejas?!"
     none_advocator: "Aún no hay apoyo"
     errors:

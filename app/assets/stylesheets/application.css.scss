@@ -11,3 +11,19 @@
  *= require_self
  *= require_tree .
  */
+
+
+.footer_inline > li {
+  display: inline-block;
+  text-align: left;
+  &:after {
+    content: " - ";
+  };
+
+  &:last-child:after {
+    content: "";
+  };
+
+}
+
+

@@ -1,16 +1,24 @@
 <div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Contact</a></li>
+  <ul role="navegation" class="nav nav-pills pull-right">
+    <li><a href="<%= root_path %>">Home</a></li>
+    <li><a href="#"><%= translate( 'contact' ) %></a></li>
+    <li>
+    <a href="<%= complaints_path %>"><%= translate('complaint.nav') %></a>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <%= translate('donation.title') %> <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="#"><%= translate('donation.coding') %></a></li>
+        <li><a href="#"><%= translate('donation.paypal') %></a></li>
+      </ul>
+    </li>
     <li>
     <% if user_signed_in? %>
-      <%= link_to translate('sign_out'), destroy_user_session_path,
-        :class => "btn btn-danger"
-      %>
+      <%= link_to translate('sign_out'), destroy_user_session_path %>
     <% else %>
       <%= link_to translate('log_in'), new_user_registration_path, 
-              :class => "btn btn-primary btn-xs",
               :id => 'log_in'
       %>
     <% end %>
