@@ -24,11 +24,13 @@ end
 
 group :development, :test do
   gem "rspec-rails"
+  gem "rspec-mocks"
   gem "cucumber-rails", :require => false
   gem "capybara"
   gem "database_cleaner"
   gem "simplecov"
   gem "faker" 
+  gem "debugger"
 end
 
 

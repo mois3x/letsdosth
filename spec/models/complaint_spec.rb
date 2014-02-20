@@ -1,20 +1,17 @@
 require 'spec_helper'
 
 describe Complaint do
-  let(:author) { User.create( :email => 'author0@domain.com', 
-      :password => 'weak_pwd', :password_confirmation => 'weak_pwd' )  }
-  let(:john) { User.create( :email => 'john@domain.com', 
-      :password => 'weak_pwd', :password_confirmation => 'weak_pwd' )  }
-  let(:chad) { User.create( :email => 'chad@domain.com', 
-      :password => 'weak_pwd', :password_confirmation => 'weak_pwd' )  }
-  let(:complaint) {
-    Complaint.create( :author => author, :title => "Price raises", 
-      :body => "long body " * 512 ) }
-  let(:ignored_agreement) {
-    complaint = Complaint.create( :author => author, 
-      :title => "Companies ignored the agreement", :body => "long description" ) 
+  let(:author)                { Factory::UserFactory.user( 'author' ) } 
+  let(:john)                  { Factory::UserFactory.user( 'john' ) }
+  let(:chad)                  { Factory::UserFactory.user( 'chad' ) }
+  let(:complaint)             { Factory::UserComplaint.complaint( author ) }
+  let(:ignored_agreement)     { 
+    complaint = Factory::UserComplaint.complaint( author, 
+      "Companies ignored the agreement", "long description" )
+
     chad.advocates( complaint )
     john.advocates( complaint )
+
     complaint
   }
 
