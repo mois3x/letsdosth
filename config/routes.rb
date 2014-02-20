@@ -1,4 +1,7 @@
 Letsdosomething::Application.routes.draw do
+  resources :posts
+
+
   resources :complaints
 
   devise_for :users

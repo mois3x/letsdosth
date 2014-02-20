@@ -16,4 +16,18 @@ class ComplaintsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @complaint = Complaint.find( params[:id] )
+  end
+
+  def update
+    @complaint = Complaint.find(params[:id])
+
+    if @complaint.update_attributes( params[:complaint] )
+      redirect_to complaints_path
+    else
+      render :edit
+    end
+  end
 end
