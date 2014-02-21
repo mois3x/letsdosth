@@ -29,6 +29,10 @@ class Complaint < ActiveRecord::Base
     self.users(true)[1..(self.users.count)] || [] # It skips author
   end
 
+  def written_by?( user )
+    author == user
+  end
+
   def self.by_author( user )
     result = Complaint.joins(:users).where( 
       "signatures.user_id = #{user.id}")
@@ -39,5 +43,6 @@ class Complaint < ActiveRecord::Base
 
     result
   end
+
 
 end
