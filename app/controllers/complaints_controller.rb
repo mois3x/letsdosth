@@ -20,19 +20,23 @@ class ComplaintsController < ApplicationController
   def edit
     @complaint = Complaint.find( params[:id] )
 
-    verify_existence
-    verify_authorship
+    if @complaint.nil?
+      return head(:not_found) unless @complaint
+    else
+      return head(:forbidden) unless @complaint.written_by?( current_user )
+    end
 
   end
 
   def update
     @complaint = Complaint.find(params[:id])
 
-    verify_existence
-    verify_authorship
+    if @complaint.nil?
+      return head(:not_found) unless @complaint
+    else
+      return head(:forbidden) unless @complaint.written_by?( current_user )
+    end
     
-    update_status = @complaint.update_attributes( params[:complaint] )
-    puts "UPDATE STATUS: #{update_status} - #{params} #: #{@complaint}"
     if @complaint.update_attributes( params[:complaint] )
       redirect_to complaints_path
     else
@@ -46,7 +50,6 @@ private
   end
   
   def verify_existence
-    head(:not_found) unless @complaint
   end
   
 end
