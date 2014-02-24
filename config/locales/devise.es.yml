@@ -1,0 +1,5 @@
+es:
+  errors:
+    messages:
+      not_saved: "Antes de involucrarse debe corregir los siguientes errores"
+

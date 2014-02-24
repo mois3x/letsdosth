@@ -8,7 +8,9 @@ es:
 
   # Project localization
   project_name: 'Hagamos algo!'
-  sign_up: 'Registrate hoy!'
+  sign_up_right_now: 'Registrate hoy!'
+  sign_up: 'Unirme'
+  involve_myself: 'Involucrarme'
   sign_in: 'Ingresar'
   sign_out: 'Salir'
   log_in: 'Entrar'
