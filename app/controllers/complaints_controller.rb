@@ -18,34 +18,35 @@ class ComplaintsController < ApplicationController
   end
 
   def edit
-    puts
-    Complaint.all.each do |c| 
-      puts "#{c.id} - #{c.title} - #{c.body} - #{c.author.email}"
-    end
-
-    debugger
-    puts "id: #{params[:id]} "
     @complaint = Complaint.find( params[:id] )
 
-    if @complaint.nil?
-      head :not_found
-    else
-      head :forbidden unless @complaint.written_by?( current_user )
-    end
+    verify_existence
+    verify_authorship
 
   end
 
   def update
     @complaint = Complaint.find(params[:id])
 
-    puts "#{ @complaint.inspect() } - #{ @complaint } "
-    head(:not_found) unless @complaint
+    verify_existence
+    verify_authorship
     
+    update_status = @complaint.update_attributes( params[:complaint] )
+    puts "UPDATE STATUS: #{update_status} - #{params} #: #{@complaint}"
     if @complaint.update_attributes( params[:complaint] )
-      puts "#{ @complaint.inspect() } - #{ @complaint } "
       redirect_to complaints_path
     else
       render :edit
     end
   end
+
+private
+  def verify_authorship
+    head :forbidden unless @complaint and @complaint.written_by?( current_user )
+  end
+  
+  def verify_existence
+    head(:not_found) unless @complaint
+  end
+  
 end

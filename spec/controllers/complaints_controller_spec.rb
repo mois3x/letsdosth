@@ -44,53 +44,37 @@ describe ComplaintsController do
         expect(response.status).to eql(403)
       end
     end
-
-=begin
-    describe "complaint by john user" do
-      
-      it "should update complaint fields" do
-        puts "#{ complaint_by_john.inspect() } - #{ complaint_by_john } "
-        expect(response.status).to eql(200)
-        post :update, 
-          { :id => complaint_by_john.id,
-            :complaint => { 
-              :title => 'title modified',
-              :body => 'body modified' 
-            }
-          }
-        puts "#{ complaint_by_john.inspect() } - #{ complaint_by_john } "
-        complaint_by_john.title.should eql('title modified')
-        complaint_by_john.body.should  eql('body modified')
-      end
-
-    end
-
   end
 
-  describe "create a new complaint" do
+  describe "#update" do
+    context "complaint written by john" do
+      describe "complaint with invalid data" do
+        it "should not be updated" do
+          expect(Complaint).to receive(:find).with(complaint_by_john.id.to_s)
+            .and_return(complaint_by_john)
 
-    describe "whole data are provided" do 
-      it "should create a new complaint" do
-        expect {
-          post :create, :complaint => { :title => 'a title', :body => 'a body' }
-          response.should redirect_to '/complaints'
-        }.to change {
-          Complaint.all.size
-        }.by(1)
+          puts "HERE - #{complaint_by_john}"
 
+            post :update, { :id => complaint_by_john.id, 
+              :complaint => { :title => "" , :body => "new body" } }
+          #expect {
+          #}.to_not change { complaint_by_john.title }
+          
+          puts "THERE - #{complaint_by_john}"
+
+          # expect(complaint_by_john.body).to eql("new body")
+        end
+      end
+      describe "complaint with valid data" do
+        it "should update complaint" do
+          expect(Complaint).to receive(:find).with(complaint_by_john.id.to_s)
+            .and_return(complaint_by_john)
+          post :update, { :id => complaint_by_john.id, 
+              :complaint => { :title => "new title", :body => "new body" } }
+          expect(complaint_by_john.title).to eql("new title")
+          expect(complaint_by_john.body).to eql("new body")
+        end
       end
     end
-
-    describe "some data are missed" do
-      it "should not create a new complaint" do
-        expect {
-          post :create, :complaint => { :title => 'a title' }    
-        }.not_to change { 
-          Complaint.all.size
-        }
-      end
-    end
-    
-=end
   end
 end
