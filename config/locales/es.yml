@@ -9,6 +9,7 @@ es:
   # Project localization
   project_name: 'Hagamos algo!'
   sign_up: 'Registrate hoy!'
+  sign_in: 'Ingresar'
   sign_out: 'Salir'
   log_in: 'Entrar'
   contact: 'Contactarnos'
