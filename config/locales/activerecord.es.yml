@@ -1,8 +1,14 @@
 es:
   activerecord:
+    messages: 
+      blank: 
+        "El %{attribute} debe estar completo"
     errors:
       models:
         user:
           attributes:
+            email:
+              taken: 'está en uso'
             password:
               too_short: 'es corto'
+              confirmation: 'no coincide con el password'

@@ -1,5 +1,6 @@
 es:
-  errors:
-    messages:
-      not_saved: "Antes de involucrarse debe corregir los siguientes errores"
-
+  devise:
+    failure:
+      user:
+        invalid: "Usuario o password inválido"
+        not_found_in_database: "Usuario inexistente"
