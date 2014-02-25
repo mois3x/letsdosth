@@ -5,6 +5,12 @@ es:
         "El %{attribute} debe estar completo"
     errors:
       models:
+        complaint:
+          attributes:
+            title:
+              blank: "Debe especificar un título"
+            body:
+              blank: "Debe completar el detalle"
         user:
           attributes:
             email:
