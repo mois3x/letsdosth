@@ -44,12 +44,27 @@ class ComplaintsController < ApplicationController
     end
   end
 
-private
-  def verify_authorship
-    head :forbidden unless @complaint and @complaint.written_by?( current_user )
+  # TODO
+  #
+  # user_id should be current user forbidden
+  # if complaint doesn't exist not_found
+  #
+  def advocated_by
+    complaint = Complaint.find_by_id(params[:id])
+    user = User.find_by_id( params[:user_id] )
+    
+    unless complaint and user
+      return head(:bad_request)
+    end
+
+    # Preventing user advocates on behalf of another one
+    unless current_user == user
+      return head(:forbidden)
+    end
+
+    user.advocates( complaint )
+
+    render json: @complaint
   end
-  
-  def verify_existence
-  end
-  
+
 end
