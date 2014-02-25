@@ -52,7 +52,6 @@ Given /^'(.*)' signs in$/ do |name|
 
   fill_in( 'Email', :with => "#{name.downcase}@fenix.com" )
   fill_in( 'Password', :with => "weakest_password" )
-  fill_in( 'Password confirmation', :with => "weakest_password" )
-  click_on( 'Sign up' ) 
+  click_on( 'sign_in' ) 
 end
 

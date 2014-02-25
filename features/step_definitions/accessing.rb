@@ -20,13 +20,7 @@ When /^'(.+)' sign up$/ do |name|
   fill_in( 'Email', :with => "#{name.downcase}@fenix.com" )
   fill_in( 'Password', :with => "weakest_password" )
   fill_in( 'Password confirmation', :with => "weakest_password" )
-  click_on( 'Sign up' ) 
-end
-
-When /^'(.+)' sign in$/ do |name|
-  fill_in( 'Email', :with => "#{name.downcase}@fenix.com" )
-  fill_in( 'Password', :with => "weakest_password" )
-  click_on( 'Sign in' ) 
+  click_on( 'involve_myself' )
 end
 
 When /^'(.+)' are logged in$/ do |name|

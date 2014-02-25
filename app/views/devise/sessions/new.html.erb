@@ -30,7 +30,8 @@
     <% end -%>
 
     <div class="form-group">
-      <%= f.submit translate('sign_in'), { :class => 'form-control' }  %>
+      <%= f.submit translate('sign_in'), 
+        { :id => 'sign_in', :class => 'form-control' }  %>
     </div>
 
     <%= render "devise/shared/links" %>

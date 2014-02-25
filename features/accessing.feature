@@ -11,6 +11,6 @@ Feature: Users access to web page
           Given 'John' is enrolled
           And   There not user logged in
           And   'John' visits logging page
-          When  'John' sign in
+          When  'John' signs in
           Then  'John' are logged in
           
