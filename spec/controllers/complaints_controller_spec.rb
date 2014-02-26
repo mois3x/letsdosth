@@ -80,7 +80,7 @@ describe ComplaintsController do
     end
   end
 
-  describe "#advocated_by" do
+  describe "#advocated_by_user" do
     before do
       @controller.stub(:current_user).and_return(brad)
     end
@@ -88,39 +88,19 @@ describe ComplaintsController do
     describe "complaint and user exist" do 
       it "should update advocators list" do
         expect(complaint_by_john.has_advocators?).to be(false)
-        expect {                                                \
-          post :advocated_by, { :id => complaint_by_john.id,    \
-            :user_id => brad.id }                               \
-        }.to                                                    \
-        change {                                                \
-          complaint_by_john.has_advocators?                     \
+        expect {                                                    \
+          post :advocated_by_user, { :id => complaint_by_john.id }  \
+        }.to                                                        \
+        change {                                                    \
+          complaint_by_john.has_advocators?                         \
         }.from(false).to(true)                                  
       end
     end 
 
     describe "invalid complaint's id" do
       it "should response" do
-        post :advocated_by, { :id => 0, :user_id => brad.id }
+        post :advocated_by_user, { :id => 0 }
         expect(response.status).to eql(400)
-      end
-    end
-
-    describe "invalid user's id" do
-      it "should response" do
-        post :advocated_by, { :id => complaint_by_chad.id, :user_id => 0 }
-        expect(response.status).to eql(400)
-      end
-    end
-
-    describe "a user advocates on behalf of another one" do
-      before do
-        @controller.stub(:current_user).and_return(john)
-      end
-
-      it "should response" do
-        post :advocated_by, { :id => complaint_by_chad.id, 
-          :user_id => brad.id }
-        expect(response.status).to eql(403)
       end
     end
   end

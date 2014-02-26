@@ -1,8 +1,8 @@
 Letsdosomething::Application.routes.draw do
   resources :complaints
-  match 'complaint/:id/advocated_by/:user_id', 
+  match     'complaints/:id/advocated_by_user', 
     { :defaults => { :format => 'json' },
-      :to => 'complaints#advocated_by', 
+      :to => 'complaints#advocated_by_user', 
       :via => [ :post ] }
 
   devise_for :users

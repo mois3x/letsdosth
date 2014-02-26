@@ -49,17 +49,12 @@ class ComplaintsController < ApplicationController
   # user_id should be current user forbidden
   # if complaint doesn't exist not_found
   #
-  def advocated_by
+  def advocated_by_user
     complaint = Complaint.find_by_id(params[:id])
-    user = User.find_by_id( params[:user_id] )
+    user = current_user
     
     unless complaint and user
       return head(:bad_request)
-    end
-
-    # Preventing user advocates on behalf of another one
-    unless current_user == user
-      return head(:forbidden)
     end
 
     user.advocates( complaint )
