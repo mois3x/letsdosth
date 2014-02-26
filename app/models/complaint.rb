@@ -33,6 +33,17 @@ class Complaint < ActiveRecord::Base
     author == user
   end
 
+  def advocated_by( user )
+    self.signatures.create!( :when => Date.today, :user => user)    \
+      unless                                                        \
+        user == self.author or self.advocators.include?( user )
+
+  end
+
+  def relinquished_by( user )
+    self.users.delete( user ) unless self.author == user
+  end
+
   def self.by_author( user )
     result = Complaint.joins(:users).where( 
       "signatures.user_id = #{user.id}")

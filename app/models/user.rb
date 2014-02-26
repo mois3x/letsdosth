@@ -11,11 +11,10 @@ class User < ActiveRecord::Base
   has_many :signatures
 
   def advocates( complaint )
-    complaint.signatures.create!( :when => Date.today, 
-      :user => self)
+    complaint.advocated_by( self )
   end
 
   def relinquishes( complaint )
-    complaint.users.delete( self ) unless complaint.author == self
+    complaint.relinquished_by( self )
   end
 end

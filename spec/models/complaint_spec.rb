@@ -18,21 +18,31 @@ describe Complaint do
   describe "creation" do
     it "shouldn't create a complaint without mandatorie fields" do
       c = Complaint.new
-      c.should_not be_valid
+      expect(c).not_to be_valid
     end
 
     it "should create a complaint signed by author" do
       c = Complaint.create( :author => author, 
                            :title => "Price raises", 
                            :body => "long body " * 512 )
-      c.author.should eq(author)
+      expect(c.author).to eql(author)
     end
 
     it "should not be valid without an author" do
       c = Complaint.new( :title => "Price raises", :body => "body" )
-      c.should_not be_valid
+      expect(c).not_to be_valid
     end
 
+  end
+
+  describe "author advocates a complaint" do
+    it "author advocation should be ignored" do
+      expect { 
+        author.advocates( complaint )
+      }.not_to change {
+        complaint.advocators.size
+      }
+    end
   end
 
   describe "author writes a complain" do
@@ -43,45 +53,57 @@ describe Complaint do
 
     it "should grab the right author" do
       c = Complaint.first 
-      c.should_not be(nil)
-      c.author.should eq(author)  
+      expect(c).not_to be(nil)
+      expect(c.author).to eql(author)  
     end
   end
 
-
   describe "user advocates the complaint" do
     it "should has advocators" do
-      ignored_agreement.has_advocators?.should == true 
+      expect(ignored_agreement.has_advocators?).to be(true)
     end
 
     it "should has advocators set which doesn't include author" do
-      ignored_agreement.advocators.should include( chad, john )
-      ignored_agreement.advocators.should_not include( author )
+      expect(ignored_agreement.advocators).to include( chad, john )
+      expect(ignored_agreement.advocators).not_to include( author )
     end
 
     it "advocator and author should belong the complaint" do
       john.advocates( complaint )
-      complaint.users(true).should include( john, author )
-      complaint.users(true).should_not include( chad )
-      complaint.author.should eq(author)
+      expect(complaint.users(true)).to include( john, author )
+      expect(complaint.users(true)).not_to include( chad )
+      expect(complaint.author).to eql(author)
+    end
+
+    describe "user advocates twice" do
+      it "should ignore the second advocation" do
+        expect(complaint.advocators).not_to include(john)
+        john.advocates( complaint )
+        expect(complaint.advocators).to include(john)
+        expect {
+          john.advocates( complaint )
+        }.not_to change {
+          complaint.advocators
+        }
+      end
     end
   end
 
   describe "user relinquishes the complaint" do
     it "should not belong to the advocators list" do
-      ignored_agreement.users(true).should include( john, chad, author )
+      expect(ignored_agreement.users(true)).to include( john, chad, author )
       chad.relinquishes( ignored_agreement )
-      complaint.users(true).should_not include( chad )
-      ignored_agreement.users(true).should include( john, author )
+      expect(complaint.users(true)).not_to include( chad )
+      expect(ignored_agreement.users(true)).to include( john, author )
     end
   end
 
   describe "user relinquishe a complaint" do
     it "should not be posible for author relinquishe a complaint" do
-      ignored_agreement.author.should eq( author )
+      expect(ignored_agreement.author).to eql( author )
       author.relinquishes( ignored_agreement )
-      ignored_agreement.author.should eq( author )
-      ignored_agreement.users(true).should include( john, author )
+      expect(ignored_agreement.author).to eql( author )
+      expect(ignored_agreement.users(true)).to include( john, author )
     end
     pending "author should be able to relinquishe a complaint"
   end
@@ -95,10 +117,7 @@ describe Complaint do
 
     it "should return complaints written by author" do
       collection = Complaint.by_author( author )
-      collection.should include( complaint, ignored_agreement )
+      expect(collection).to include( complaint, ignored_agreement )
     end
   end
-
-
-end
-
+end 
