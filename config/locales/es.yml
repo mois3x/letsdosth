@@ -16,6 +16,10 @@ es:
     coding: 'Escribir código'
     paypal: 'Paypal'
   complaint:
+    author: 'Escrita por: '
+    actions:
+      edit: 'Editar'
+      advocate: 'Apoyar'
     nav: 'Quejas'
     none_complaint: "No hay quejas?!"
     none_advocator: "Aún no hay apoyo"

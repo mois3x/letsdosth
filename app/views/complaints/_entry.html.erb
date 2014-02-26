@@ -1,10 +1,33 @@
-<div class="col-lg-12 border_red_debug"> <!-- entry -->
-  <div class="row ">
+<div class="col-lg-12 comp-section"> <!-- entry -->
+  <!-- action section -->
+  <div class="row comp-action">
     <div class="col-lg-8">
+      <%= form_tag( "complaints/#{complaint.id}/advocated_by_user", method: 'post') do %>
+        <% if complaint.written_by?( current_user ) %>
+          <a href="<%= edit_complaint_path( complaint.id ) %>" 
+            title="<%= translate('complaint.actions.edit') %>" 
+            class="glyphicon glyphicon-edit"> </a>
+        <% else %>
+          <a href="#" 
+            class="glyphicon glyphicon-edit btn-link"
+            disabled></a>
+        <% end %>
+        &nbsp;
+        <a href="#" 
+          title="<%= translate('complaint.actions.advocate') %>" 
+          class="advocate glyphicon glyphicon-thumbs-up"> </a>
+      <% end %>
+    </div>
+  </div>
+  <!-- End 'action section -->
+  <!-- Complaint itlef -->
+  <div class="row ">
+    <div  class="col-lg-8">
       <span><p><%= complaint.title %></p></span>
       <span><p><%= complaint.body %></p></span>
+      <span><p><%= "#{translate('complaint.author')} #{ complaint.author.email}" %></p></span>
     </div>
-    <div class="col-lg-4 border_green_debug">
+    <div class="col-lg-4 ">
       <% if not complaint.has_advocators? %>
         <span><p><%= translate( 'complaint.none_advocator' )%></p></span>
       <% else %>
@@ -14,4 +37,5 @@
       <% end %>
     </div>
   </div>
+  <!-- End 'Complaint itlef -->
 </div> <!-- end 'entry -->

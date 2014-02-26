@@ -15,9 +15,6 @@
 }
 
 
-// Comments
-// Comments
-// Comments
 .field_with_errors {
   @extend .has-error;
 }
@@ -26,4 +23,23 @@
 
 .field_with_errors {
   @extend .has-error;
+}
+
+/* Gradient colors */
+$cmp-grd-t: #f4fff0;
+$cmp-grd-b: #ffffff;
+
+.comp-section {
+  background-image:        -webkit-gradient( linear, left top, left bottom, color-stop(0, $cmp-grd-t), color-stop(1, $cmp-grd-b));
+  background-image:      -o-linear-gradient(bottom, $cmp-grd-t 0%, $cmp-grd-b 100%);
+  background-image:    -moz-linear-gradient(bottom, $cmp-grd-t 0%, $cmp-grd-b 100%);
+  background-image: -webkit-linear-gradient(bottom, $cmp-grd-t 0%, $cmp-grd-b 100%);
+  background-image:     -ms-linear-gradient(bottom, $cmp-grd-t 0%, $cmp-grd-b 100%);
+  background-image:         linear-gradient(to bottom, $cmp-grd-t 0%, $cmp-grd-b 100%);
+}
+
+.comp-action {
+  border-bottom-style: solid;
+  border-bottom-color: #deedd8;
+  border-bottom-width: 1px;
 }
