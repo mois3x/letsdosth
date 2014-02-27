@@ -53,13 +53,11 @@ class ComplaintsController < ApplicationController
     complaint = Complaint.find_by_id(params[:id])
     user = current_user
     
-    unless complaint and user
-      return head(:bad_request)
-    end
+    return head(:bad_request) unless complaint and user
 
     user.advocates( complaint )
 
-    render json: @complaint
+    render json: complaint
   end
 
 end

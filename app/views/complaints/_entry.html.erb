@@ -1,27 +1,10 @@
-<div class="col-lg-12 comp-section"> <!-- entry -->
+<div class="col-lg-12 comp-section"> <!-- complaint section -->
   <!-- action section -->
-  <div class="row comp-action">
-    <div class="col-lg-8">
-      <%= form_tag( "complaints/#{complaint.id}/advocated_by_user", method: 'post') do %>
-        <% if complaint.written_by?( current_user ) %>
-          <a href="<%= edit_complaint_path( complaint.id ) %>" 
-            title="<%= translate('complaint.actions.edit') %>" 
-            class="glyphicon glyphicon-edit"> </a>
-        <% else %>
-          <a href="#" 
-            class="glyphicon glyphicon-edit btn-link"
-            disabled></a>
-        <% end %>
-        &nbsp;
-        <a href="#" 
-          title="<%= translate('complaint.actions.advocate') %>" 
-          class="advocate glyphicon glyphicon-thumbs-up"> </a>
-      <% end %>
-    </div>
-  </div>
+  <%= render partial: "actions", locals: { :complaint => complaint } %>
   <!-- End 'action section -->
-  <!-- Complaint itlef -->
-  <div class="row ">
+
+  <!-- Complaint entry-->
+  <div class="row comp-entry">
     <div  class="col-lg-8">
       <span><p><%= complaint.title %></p></span>
       <span><p><%= complaint.body %></p></span>
@@ -37,5 +20,5 @@
       <% end %>
     </div>
   </div>
-  <!-- End 'Complaint itlef -->
-</div> <!-- end 'entry -->
+  <!-- End 'Complaint entry-->
+</div> <!-- end 'complaint section-->
