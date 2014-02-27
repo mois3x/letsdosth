@@ -20,6 +20,7 @@ es:
     actions:
       edit: 'Editar'
       advocate: 'Apoyar'
+      relinquish: 'Retirarse'
     nav: 'Quejas'
     none_complaint: "No hay quejas?!"
     none_advocator: "Aún no hay apoyo"
