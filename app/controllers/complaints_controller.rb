@@ -57,7 +57,10 @@ class ComplaintsController < ApplicationController
 
     user.advocates( complaint )
 
-    render json: complaint
+    render json: { :id => complaint.id,                         \
+      :advocators => complaint.advocators.map { |u| u.email }   \
+    }
   end
+  
 
 end

@@ -94,6 +94,11 @@ describe ComplaintsController do
         change {                                                    \
           complaint_by_john.has_advocators?                         \
         }.from(false).to(true)                                  
+
+        expected_json = { :id => complaint_by_john.id, 
+          :advocators => complaint_by_john.advocators.map { |u| u.email } 
+        }
+        expect(response.body).to eql( expected_json.to_json )
       end
     end 
 
