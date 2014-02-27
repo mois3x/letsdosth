@@ -62,5 +62,17 @@ class ComplaintsController < ApplicationController
     }
   end
   
+  def relinquished_by_user
+    complaint = Complaint.find_by_id(params[:id])
+    user = current_user
+    
+    return head(:bad_request) unless complaint and user
 
+    user.relinquishes( complaint )
+
+    render json: { :id => complaint.id,                         \
+      :advocators => complaint.advocators.map { |u| u.email }   \
+    }
+  end
+  
 end

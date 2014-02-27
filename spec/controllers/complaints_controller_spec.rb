@@ -80,6 +80,27 @@ describe ComplaintsController do
     end
   end
 
+  describe "#relinquished_by_user" do
+    before do
+      @controller.stub(:current_user).and_return(brad)
+    end
+
+    describe "complaint and user exist" do 
+      it "should remove user from advocator list" do
+        brad.advocates( complaint_by_john )
+        expect(complaint_by_john.advocators).to include(brad)
+
+        post :relinquished_by_user, { :id => complaint_by_john.id } 
+        expect(complaint_by_john.advocators).not_to include(brad)
+
+        expected_json = { :id => complaint_by_john.id, 
+          :advocators => [] }
+        expect(response.body).to eql( expected_json.to_json )
+      end
+    end
+
+  end
+
   describe "#advocated_by_user" do
     before do
       @controller.stub(:current_user).and_return(brad)
