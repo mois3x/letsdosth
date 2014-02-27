@@ -1,24 +1,22 @@
-<div class="col-lg-12 comp-section"> <!-- complaint section -->
   <!-- action section -->
   <%= render partial: "actions", locals: { :complaint => complaint } %>
   <!-- End 'action section -->
 
   <!-- Complaint entry-->
-  <div class="row comp-entry">
-    <div  class="col-lg-8">
+  <div id="comp_<%= complaint.id %>" class="row comp-entry">
+    <div class="col-lg-8 comp-info">
       <span><p><%= complaint.title %></p></span>
       <span><p><%= complaint.body %></p></span>
       <span><p><%= "#{translate('complaint.author')} #{ complaint.author.email}" %></p></span>
     </div>
-    <div class="col-lg-4 ">
+    <div class="col-lg-4 comp-advocators">
       <% if not complaint.has_advocators? %>
         <span><p><%= translate( 'complaint.none_advocator' )%></p></span>
       <% else %>
-        <% complaint.advocators.each do |u| %> 
+        <% complaint.advocators.reverse.each do |u| %> 
           <span><p><%= u.email %></p></span>
         <% end %>
       <% end %>
     </div>
   </div>
   <!-- End 'Complaint entry-->
-</div> <!-- end 'complaint section-->
