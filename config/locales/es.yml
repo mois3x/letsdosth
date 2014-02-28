@@ -4,7 +4,7 @@ es:
   sign_up: 'Involucrandome'
   involve_myself: 'Involucrarme'
   sign_in: 'Ingresar'
-  sign_out: 'Salir'
+  sign_out: 'salir'
   log_in: 'Entrar'
   loggin_error: 'Error'
   contact: 'Contactarnos'
@@ -22,6 +22,8 @@ es:
       advocate: 'Apoyar'
       relinquish: 'Retirarse'
     nav: 'Quejas'
+    new: 'Nueva'
+    list: 'Lista'
     none_complaint: "No hay quejas?!"
     none_advocator: "Aún no hay apoyo"
     errors:
