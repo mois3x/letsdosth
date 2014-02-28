@@ -1,5 +1,6 @@
 es:
   project_name: 'Hagamos algo!'
+  want_to_complaint: 'Quiero quejarme!'
   sign_up_right_now: 'Registrate hoy!'
   sign_up: 'Involucrandome'
   involve_myself: 'Involucrarme'
@@ -26,6 +27,8 @@ es:
     list: 'Lista'
     none_complaint: "No hay quejas?!"
     none_advocator: "Aún no hay apoyo"
+    form:
+      title_new: 'Nueva queja'
     errors:
       creation: 'Algunos campos son inválidos'
         
