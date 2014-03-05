@@ -50,7 +50,7 @@ end
 Given /^'(.*)' signs in$/ do |name|
   step "'#{name}' visits logging page"
 
-  fill_in( 'Email', :with => "#{name.downcase}@fenix.com" )
+  fill_in( 'Email', :with => email_from(name) )
   fill_in( 'Password', :with => "weakest_password" )
   click_on( 'sign_in' ) 
 end
