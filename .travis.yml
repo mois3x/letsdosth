@@ -7,7 +7,3 @@ before_script:
   - bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare --trace
 bundler_args: --without production development
-branches:
-  only:
-    - dev
-    - master
