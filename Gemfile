@@ -22,16 +22,16 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development, :test do
+group :development do
   gem "cucumber-rails", :require => false
   gem "rspec-rails"
-  gem "database_cleaner"
   gem "simplecov"
   gem "debugger"
   gem 'sqlite3'
 end
 
 group :test do
+  gem "database_cleaner"
   gem "faker" 
   gem "capybara"
   gem "rspec-mocks"
