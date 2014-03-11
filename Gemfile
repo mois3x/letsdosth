@@ -22,14 +22,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
-  gem "cucumber-rails", :require => false
-  gem "rspec-rails"
-  gem "simplecov"
-  gem "debugger"
-end
+gem "debugger", :group => [ :development ]
+gem "rspec-rails", :group => [ :development, :test ]
 
 group :test do
+  gem "cucumber-rails", :require => false
+  gem "simplecov"
   gem 'sqlite3'
   gem "database_cleaner"
   gem "faker" 
