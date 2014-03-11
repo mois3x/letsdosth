@@ -27,10 +27,10 @@ group :development do
   gem "rspec-rails"
   gem "simplecov"
   gem "debugger"
-  gem 'sqlite3'
 end
 
 group :test do
+  gem 'sqlite3'
   gem "database_cleaner"
   gem "faker" 
   gem "capybara"
