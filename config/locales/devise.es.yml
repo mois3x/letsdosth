@@ -1,5 +1,6 @@
 es:
   devise:
+    password_forgotten: 'Olvido su password?'
     failure:
       user:
         invalid: "Usuario o password inválido"

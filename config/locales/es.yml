@@ -11,7 +11,7 @@ es:
   contact: 'Contactarnos'
   errors:
     messages:
-      not_saved: "Antes de involucrarse debe corregir los siguientes errores:"
+      not_saved: "Hay campos con errores:"
   donation:
     title: 'Donaciones'
     coding: 'Escribir código'
