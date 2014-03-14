@@ -55,3 +55,6 @@ Given /^'(.*)' signs in$/ do |name|
   click_on( 'sign_in' ) 
 end
 
+Given "System's just started up" do
+  clear_emails
+end

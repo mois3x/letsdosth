@@ -34,12 +34,26 @@ When /^'(.+)' clicks '(.+)'$/ do | name, link|
 end
 
 Then /^'(.+)' receives '(.*)'$/ do |name, mail_content| 
-  mail = ActionMailer::Base.deliveries.last
+  open_email( self.email_from( name ) )
+  mail = current_email
   expect(mail.to).to include( self.email_from( name ) )
   expect(mail.subject).to have_content( mail_content )
 end
 
-Then /^'(.+)' clicks '(.*)' on mail$/ do |name, link| 
-  mail = ActionMailer::Base.deliveries.last
-  mail.body.click_on( link )
+And /^'(.+)' clicks '(.*)' on mail$/ do |name, link| 
+  open_email( self.email_from( name ) )
+  mail = current_email
+  mail.click_on( link )
 end
+
+And /^'(.*)' fills form with password '(.*)'$/ do |name, password| 
+  fill_in "New password", :with => password
+  fill_in "Confirm new password", :with => password
+  click_on( 'Change my password' )
+end
+
+And /^'(.*)' new password is '(.*)'$/ do |name, password|
+  u = User.find_by_email( self.email_from(name) )
+  expect( u.valid_password?(password) ).to eql(true)
+end
+
