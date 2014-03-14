@@ -32,6 +32,7 @@ group :test do
   gem "database_cleaner"
   gem "faker" 
   gem "capybara"
+  gem "capybara-email"
   gem "rspec-mocks"
   gem "selenium-webdriver"
 end

@@ -26,3 +26,20 @@ end
 When /^'(.+)' are logged in$/ do |name|
   page.has_content?('Salir')
 end
+
+When /^'(.+)' clicks '(.+)'$/ do | name, link|
+  click_link( 'do_you_forget_password' )
+  fill_in( 'Email', :with => "#{self.email_from(name)}" )
+  click_on( 'Send me reset password instructions' )
+end
+
+Then /^'(.+)' receives '(.*)'$/ do |name, mail_content| 
+  mail = ActionMailer::Base.deliveries.last
+  expect(mail.to).to include( self.email_from( name ) )
+  expect(mail.subject).to have_content( mail_content )
+end
+
+Then /^'(.+)' clicks '(.*)' on mail$/ do |name, link| 
+  mail = ActionMailer::Base.deliveries.last
+  mail.body.click_on( link )
+end

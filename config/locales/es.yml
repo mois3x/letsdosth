@@ -2,13 +2,14 @@ es:
   project_name: 'Hagamos algo!'
   want_to_complaint: 'Quiero quejarme!'
   sign_up_right_now: 'Registrate hoy!'
-  sign_up: 'Involucrandome'
+  sign_up: 'Registrarme'
   involve_myself: 'Involucrarme'
   sign_in: 'Ingresar'
   sign_out: 'salir'
   log_in: 'Entrar'
   loggin_error: 'Error'
   contact: 'Contactarnos'
+  do_you_forget_password: 'Olvidó su password?'
   errors:
     messages:
       not_saved: "Hay campos con errores:"
