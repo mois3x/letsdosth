@@ -5,11 +5,11 @@
 #   gem 'sqlite3'
 development:
   adapter: postgresql
-  database: db
+  database: <%= ENV['DATABASE_NAME'] %>
   pool: 5
   timeout: 5000
-  username: <%= ENV[] %>
-  password: <%= ENV[] %>
+  username: <%= ENV['PGUSER'] %>
+  password: <%= ENV['PGPASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -22,11 +22,11 @@ test: &test
 
 production:
   adapter: postgresql
-  database: db
+  database: <%= ENV[''] %>
   pool: 5
   timeout: 5000
-  username: <%= ENV[] %>
-  password: <%= ENV[] %>
+  username: <%= ENV[''] %>
+  password: <%= ENV[''] %>
 
 cucumber:
   <<: *test
