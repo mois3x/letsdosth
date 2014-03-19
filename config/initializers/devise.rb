@@ -4,7 +4,7 @@ Devise.setup do |config|
   config.secret_key = 'b64333011456e1e23a456162056cd2ac3a7cd2510f8183f71640fbfcaca302a9f2c9165438ad1ba6b1e4168f43bc4cdbd578610fb8ab36df23a2257fb32dd855'
 
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "please-change-me@config-initializers-devise.com"
+  config.mailer_sender = "admin@letdosth.com"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating an user. By default is

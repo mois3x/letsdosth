@@ -15,6 +15,8 @@ es:
           attributes:
             email:
               taken: 'está en uso'
+              not_found: 'inválido'
             password:
               too_short: 'es corto'
               confirmation: 'no coincide con el password'
+
