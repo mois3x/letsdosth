@@ -1,6 +1,6 @@
 class Version
   def self.major
-    0
+    1
   end
 
   def self.minor
