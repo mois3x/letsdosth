@@ -12,7 +12,7 @@ class Version
   end
 
   def self.build
-    ENV['BUILD_NUMBER'] || "?"
+    ENV['BUILD_NUMBER'] || "vdev"
   end
 
   def self.as_string
