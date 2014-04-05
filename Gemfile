@@ -7,6 +7,8 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'devise'
+gem 'jquery-rails'
+
 
 
 # Gems used only for assets and not required
@@ -22,8 +24,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem "debugger", :group => [ :development ]
-gem "rspec-rails", :group => [ :development, :test ]
+group :development do
+  gem "debugger"
+end
 
 group :test do
   gem "cucumber-rails", :require => false
@@ -37,8 +40,9 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem "rspec-rails", :group => [ :development, :test ]
+gem "dotenv-rails", :group => [ :development, :test ]
 
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
