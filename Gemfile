@@ -24,6 +24,7 @@ end
 
 gem "debugger", :group => [ :development ]
 gem "rspec-rails", :group => [ :development, :test ]
+gem 'dotenv', :groups => [:development, :test]
 
 group :test do
   gem "cucumber-rails", :require => false
