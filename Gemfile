@@ -24,9 +24,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
-  gem "debugger"
-end
 
 group :test do
   gem "cucumber-rails", :require => false
@@ -42,6 +39,7 @@ end
 
 gem "rspec-rails", :group => [ :development, :test ]
 gem "dotenv-rails", :group => [ :development, :test ]
+gem "debugger", :group => [ :development ]
 
 
 # To use ActiveModel has_secure_password

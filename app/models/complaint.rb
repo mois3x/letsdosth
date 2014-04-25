@@ -55,5 +55,13 @@ class Complaint < ActiveRecord::Base
     result
   end
 
+  def self.top( how_many = 5 )
+    Signature.select( 'complaint_id, count(user_id) as counter' ) \
+      .group(:complaint_id)                                       \
+      .order( 'counter desc')                                     \
+      .last( how_many )                                           \
+      .map { |s| s.complaint }
+  end
+
 
 end
