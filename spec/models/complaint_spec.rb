@@ -5,7 +5,7 @@ describe Complaint do
   let(:john)                  { Factory::UserFactory.user( 'john' ) }
   let(:chad)                  { Factory::UserFactory.user( 'chad' ) }
   let(:complaint)             { Factory::UserComplaint.complaint( author ) }
-  let(:ignored_agreement)     { 
+  let!(:ignored_agreement)     { 
     complaint = Factory::UserComplaint.complaint( author, 
       "Companies ignored the agreement", "long description" )
 
@@ -14,6 +14,12 @@ describe Complaint do
 
     complaint
   }
+
+  describe "top" do
+    it "should return most popular complaint" do
+      expect( Complaint.top(1) ).to include( ignored_agreement )
+    end
+  end
 
   describe "creation" do
     it "shouldn't create a complaint without mandatorie fields" do
