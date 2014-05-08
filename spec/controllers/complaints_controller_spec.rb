@@ -8,7 +8,7 @@ describe ComplaintsController do
   let (:brad)   { Factory::UserFactory.user( 'Grad' ) }
 
   before do
-    @controller.stub(:current_user).and_return(john)
+    sign_in john
   end
 
   describe "#index" do
