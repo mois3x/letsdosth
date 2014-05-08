@@ -1,4 +1,6 @@
 class ComplaintsController < ApplicationController
+  before_filter :authenticate_user!, :except => [ :index ]
+
   def index
     @complaints = Complaint.all
   end
@@ -74,5 +76,4 @@ class ComplaintsController < ApplicationController
       :advocators => complaint.advocators.map { |u| u.email }   \
     }
   end
-  
 end
