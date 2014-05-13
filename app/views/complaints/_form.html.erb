@@ -20,6 +20,8 @@
     <%= f.text_area :body, class: 'form-control' %>
     <p class="help-block"><%= display_status_for( @complaint, :body ) %></p>
   </div>
+  <div id="zone" class="dropzone">
+  </div>
   <div class="actions">
     <%= f.submit class: 'form-control' %>
   </div>
