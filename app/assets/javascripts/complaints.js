@@ -25,7 +25,6 @@ $(document).ready( function() {
 
   update_advocators( '.advocate' );
   update_advocators( '.relinquish' );
-
-
+  $('#new-complaint').editable({inlineMode: false, height: 400})
 });
 
